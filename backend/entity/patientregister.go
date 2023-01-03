@@ -1,29 +1,15 @@
 package entity
 
- 
-
 import (
-
   "time"
-
   "gorm.io/gorm"
-
 )
 
- 
-
-type User struct {
-
+type PatientRegister struct {
   gorm.Model
-
   FirstName        string
-
   LastName         string
-
   Email            string
-
   Age              uint8
-
   BirthDay         time.Time
-
 }
