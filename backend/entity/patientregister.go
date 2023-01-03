@@ -21,6 +21,9 @@ type PatientRegister struct {
   
   PrefixID  *uint
   Prefix  Prefix  `gorm:"references:ID"`
+
+  NationalityID *uint
+  Nationality Nationality `gorm:"references:ID"`
 }
 
 type Employee struct{
@@ -45,4 +48,10 @@ type Prefix struct{
   gorm.Model
   Name  string
   PatientRegisters  []PatientRegister `gorm:"foreignKey:PrefixID"`
+}
+
+type Nationality struct{
+  gorm.Model
+  Name  string
+  PatientRegisters  []PatientRegister `gorm:"foreignKey:NationalityID"`
 }
