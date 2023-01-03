@@ -12,6 +12,8 @@ type PatientRegister struct {
   Email            string
   Age              uint8
   BirthDay         time.Time
+  EmployeeID  *uint
+  Employee  Employee  `gorm:"references:ID"`
 }
 
 type Employee struct{
@@ -23,4 +25,11 @@ type Employee struct{
   Mobile  string
   Address string
   Salary  uint8
+  PatientRegisters  []PatientRegister `gorm:"foreignKey:EmployeeID"`
+}
+
+type Gender struct{
+  gorm.Model
+  Name  string
+  PatientRegisters  []PatientRegister `gorm:"foreignKey:GenderID"`
 }
