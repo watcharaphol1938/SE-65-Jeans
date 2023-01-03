@@ -13,3 +13,14 @@ type PatientRegister struct {
   Age              uint8
   BirthDay         time.Time
 }
+
+type Employee struct{
+  gorm.Model
+  FirstName string
+  LastName  string
+  IdentificationNumber  string
+  BirthDay  time.Time
+  Mobile  string
+  Address string
+  Salary  uint8
+}
