@@ -24,6 +24,9 @@ type PatientRegister struct {
 
   NationalityID *uint
   Nationality Nationality `gorm:"references:ID"`
+
+  ReligionID  *uint
+  Religion  Religion  `gorm:"references:ID"`
 }
 
 type Employee struct{
@@ -54,4 +57,10 @@ type Nationality struct{
   gorm.Model
   Name  string
   PatientRegisters  []PatientRegister `gorm:"foreignKey:NationalityID"`
+}
+
+type Religion struct{
+  gorm.Model
+  Name  string
+  PatientRegisters  []PatientRegister `gorm:"foreignKey:ReligionID"`
 }
