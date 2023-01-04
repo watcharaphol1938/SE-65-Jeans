@@ -39,6 +39,9 @@ type PatientRegister struct {
 
   DistrictID  *uint
   District  District  `gorm:"references:ID"`
+
+  ProvinceID  *uint
+  Province  Province  `gorm:"references:ID"`
 }
 
 type Employee struct{
@@ -99,4 +102,10 @@ type District struct{
   gorm.Model
   Name  string
   PatientRegisters  []PatientRegister `gorm:"foreignKey:DistrictID"`
+}
+
+type Province struct{
+  gorm.Model
+  Name  string
+  PatientRegisters  []PatientRegister `gorm:"foreignKey:ProvinceID"`
 }
