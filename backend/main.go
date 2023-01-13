@@ -11,12 +11,26 @@ func main() {
   r := gin.Default()
   r.Use(CORSMiddleware())
 
-  // User Routes
+  // PatientRegister Routes
   r.GET("/patientregisters", controller.ListPatientRegisters)
   r.GET("/patientregister/:id", controller.GetPatientRegister)
   r.POST("/patientregisters", controller.CreatePatientRegister)
   r.PATCH("/patientregisters", controller.UpdatePatientRegister)
   r.DELETE("/patientregisters/:id", controller.DeletePatientRegister)
+
+  // Employee Routes
+  r.GET("/employees", controller.ListEmployees)
+  r.GET("/employee/:id", controller.GetEmployee)
+  r.POST("/employees", controller.CreateEmployee)
+  r.PATCH("/employees", controller.UpdateEmployee)
+  r.DELETE("/employees/:id", controller.DeleteEmployee)
+
+  // Gender Routes
+  r.GET("/genders", controller.ListGenders)
+  r.GET("/gender/:id", controller.GetGender)
+  r.POST("/genders", controller.CreateGender)
+  r.PATCH("/genders", controller.UpdateGender)
+  r.DELETE("/genders/:id", controller.DeleteGender)
 
   // Run the server
   r.Run()
