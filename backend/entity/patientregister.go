@@ -42,6 +42,9 @@ type PatientRegister struct {
 
   ProvinceID  *uint
   Province  Province  `gorm:"references:ID"`
+
+  PostCodeID  *uint
+  PostCode  PostCode  `gorm:"references:ID"`
 }
 
 type Employee struct{
@@ -108,4 +111,10 @@ type Province struct{
   gorm.Model
   Name  string
   PatientRegisters  []PatientRegister `gorm:"foreignKey:ProvinceID"`
+}
+
+type PostCode struct{
+  gorm.Model
+  Name  string
+  PatientRegisters  []PatientRegister `gorm:"foreignKey:PostCodeID"`
 }
