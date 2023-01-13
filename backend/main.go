@@ -32,6 +32,13 @@ func main() {
   r.PATCH("/genders", controller.UpdateGender)
   r.DELETE("/genders/:id", controller.DeleteGender)
 
+  // Prefix Routes
+  r.GET("/prefixes", controller.ListPrefixes)
+  r.GET("/prefix/:id", controller.GetPrefix)
+  r.POST("/prefixes", controller.CreatePrefix)
+  r.PATCH("/prefixes", controller.UpdatePrefix)
+  r.DELETE("/prefixes/:id", controller.DeletePrefix)
+
   // Run the server
   r.Run()
 }

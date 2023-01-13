@@ -18,6 +18,6 @@ func SetupDatabase() {
   }
 
   // Migrate the schema
-  database.AutoMigrate(&PatientRegister{}, &Employee{}, &Gender{})
+  database.AutoMigrate(&PatientRegister{}, &Employee{}, &Gender{}, &Prefix{})
   db = database
 }
