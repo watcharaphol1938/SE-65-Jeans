@@ -9,10 +9,19 @@ type PatientRegister struct {
   gorm.Model
   FirstName        string
   LastName         string
-  Email            string
+  IdentificationNumber  string
   Age              uint8
   BirthDay         time.Time
-
+  Mobile  string
+  Email            string
+  Occupation  string
+  Address string
+  EmergencyPersonFirstName  string
+  EmergencyPersonLastName string
+  EmergencyPersonMobile string
+  EmergencyPersonOccupation string
+  EmergencyPersonRelationWithPatient  string
+  
   EmployeeID  *uint
   Employee  Employee  `gorm:"references:ID"`
   
