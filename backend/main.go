@@ -46,6 +46,13 @@ func main() {
   r.PATCH("/nationalities", controller.UpdateNationality)
   r.DELETE("/nationalities/:id", controller.DeleteNationality)
 
+  // Religion Routes
+  r.GET("/religions", controller.ListReligions)
+  r.GET("/religion/:id", controller.GetReligion)
+  r.POST("/religions", controller.CreateReligion)
+  r.PATCH("/religions", controller.UpdateReligion)
+  r.DELETE("/religions/:id", controller.DeleteReligion)
+
   // Run the server
   r.Run()
 }
