@@ -109,6 +109,13 @@ func main() {
   r.PATCH("/nurses", controller.UpdateNurse)
   r.DELETE("/nurses/:id", controller.DeleteNurse)
 
+  // HistorySheet Routes
+  r.GET("/historysheets", controller.ListHistorySheets)
+  r.GET("/historysheet/:id", controller.GetHistorySheet)
+  r.POST("/historysheets", controller.CreateHistorySheet)
+  r.PATCH("/historysheets", controller.UpdateHistorySheet)
+  r.DELETE("/historysheets/:id", controller.DeleteHistorySheet)
+
   // Run the server
   r.Run()
 }
