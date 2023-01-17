@@ -81,6 +81,13 @@ func main() {
   r.PATCH("/districts", controller.UpdateDistrict)
   r.DELETE("/districts/:id", controller.DeleteDistrict)
 
+  // Province Routes
+  r.GET("/provinces", controller.ListProvinces)
+  r.GET("/province/:id", controller.GetProvince)
+  r.POST("/provinces", controller.CreateProvince)
+  r.PATCH("/provinces", controller.UpdateProvince)
+  r.DELETE("/provinces/:id", controller.DeleteProvince)
+
   // Run the server
   r.Run()
 }
