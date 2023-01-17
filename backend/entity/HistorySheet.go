@@ -25,8 +25,8 @@ type HistorySheet struct {
   NurseID	*uint
   Nurse	Nurse	`gorm:"references:ID"`
 
-  /* UrgencyID	*uint
-  Urgency	Urgency	`gorm:"references:ID"` */
+  UrgencyID	*uint
+  Urgency	Urgency	`gorm:"references:ID"`
 }
 
 type Nurse struct{
@@ -41,11 +41,11 @@ type Nurse struct{
 	HistorySheets	[]HistorySheet	`gorm:"foreignKey:NurseID"`
 }
 
-/* type Urgency struct{
+type Urgency struct{
 	gorm.Model
 	Name	string
 	HistorySheets	[]HistorySheet	`gorm:"foreignKey:UrgencyID"`
-} */
+}
 
 type PatientRegister struct {
   gorm.Model
