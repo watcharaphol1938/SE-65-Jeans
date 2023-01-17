@@ -67,6 +67,13 @@ func main() {
   r.PATCH("/maritalststuses", controller.UpdateMaritalStatus)
   r.DELETE("/maritalstatuses/:id", controller.DeleteMaritalStautus)
 
+  // SubDistrict Routes
+  r.GET("/subdistricts", controller.ListSubDistricts)
+  r.GET("/subdistrict/:id", controller.GetSubDistrict)
+  r.POST("/subdistricts", controller.CreateSubDistrict)
+  r.PATCH("/subdistricts", controller.UpdateSubDistrict)
+  r.DELETE("/subdistricts/:id", controller.DeleteSubDistrict)
+
   // Run the server
   r.Run()
 }
