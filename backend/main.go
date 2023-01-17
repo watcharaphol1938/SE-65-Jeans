@@ -95,6 +95,20 @@ func main() {
   r.PATCH("/postcodes", controller.UpdatePostCode)
   r.DELETE("/postcodes/:id", controller.DeletePostCode)
 
+  // Ugency Routes
+  r.GET("/urgencies", controller.ListUrgencies)
+  r.GET("/urgency/:id", controller.GetUrgency)
+  r.POST("/urgencies", controller.CreateUrgency)
+  r.PATCH("/urgencies", controller.UpdateUrgency)
+  r.DELETE("/urgencies/:id", controller.DeleteUrgency)
+
+  // Nurse Routes
+  r.GET("/nurses", controller.ListNurses)
+  r.GET("/nurse/:id", controller.GetNurse)
+  r.POST("/nurses", controller.CreateNurse)
+  r.PATCH("/nurses", controller.UpdateNurse)
+  r.DELETE("/nurses/:id", controller.DeleteNurse)
+
   // Run the server
   r.Run()
 }
