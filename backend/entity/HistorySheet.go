@@ -19,6 +19,9 @@ type HistorySheet struct {
   DrugAllergy	string
   Symtom	string
 
+  PatientRegisterID *uint
+  PatientRegister PatientRegister `gorm:"references:ID"`
+
   /* NurseID	*uint
   Nurse	Nurse	`gorm:"references:ID"`
 
@@ -42,7 +45,7 @@ type Urgency struct{
 	gorm.Model
 	Name	string
 	HistorySheets	[]HistorySheet	`gorm:"foreignKey:UrgencyID"`
-}
+} */
 
 type PatientRegister struct {
   gorm.Model
@@ -93,6 +96,8 @@ type PatientRegister struct {
 
   PostCodeID  *uint
   PostCode  PostCode  `gorm:"references:ID"`
+
+  HistorySheets []HistorySheet  `gorm:"foreignKey:PatientRegisterID"`
 }
 
 type Employee struct{
@@ -165,4 +170,4 @@ type PostCode struct{
   gorm.Model
   Name  string
   PatientRegisters  []PatientRegister `gorm:"foreignKey:PostCodeID"`
-} */
+}
