@@ -60,6 +60,13 @@ func main() {
   r.PATCH("/bloodtypes", controller.UpdateBloodType)
   r.DELETE("/bloodtypes/:id", controller.DeleteBloodType)
 
+  // MaritalStatus Routes
+  r.GET("/maritalstatuses", controller.ListMaritalStatuses)
+  r.GET("/maritalstatus/:id", controller.GetMaritalStatus)
+  r.POST("/maritalstatuses", controller.CreateMaritalStatus)
+  r.PATCH("/maritalststuses", controller.UpdateMaritalStatus)
+  r.DELETE("/maritalstatuses/:id", controller.DeleteMaritalStautus)
+
   // Run the server
   r.Run()
 }
