@@ -74,6 +74,13 @@ func main() {
   r.PATCH("/subdistricts", controller.UpdateSubDistrict)
   r.DELETE("/subdistricts/:id", controller.DeleteSubDistrict)
 
+  // District Routes
+  r.GET("/districts", controller.ListDistricts)
+  r.GET("/district/:id", controller.GetDistrict)
+  r.POST("/districts", controller.CreateDistrict)
+  r.PATCH("/districts", controller.UpdateDistrict)
+  r.DELETE("/districts/:id", controller.DeleteDistrict)
+
   // Run the server
   r.Run()
 }
