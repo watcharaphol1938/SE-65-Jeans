@@ -20,4 +20,16 @@ func SetupDatabase() {
   // Migrate the schema
   database.AutoMigrate(&PatientRegister{}, &Employee{}, &Gender{}, &Prefix{}, &Nationality{}, &Religion{}, &BloodType{}, &MaritalStatus{}, &SubDistrict{}, &District{}, &Province{}, &PostCode{}, &Urgency{}, &Nurse{}, &HistorySheet{})
   db = database
+
+  // Employee -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  // Gender -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  gender1 := Gender{Name: "ชาย"}
+	db.Model(&Gender{}).Create(&gender1)
+
+	gender2 := Gender{Name: "หญิง"}
+	db.Model(&Gender{}).Create(&gender2)
+
+	gender3 := Gender{Name: "อื่นๆ"}
+	db.Model(&Gender{}).Create(&gender3)
 }
