@@ -94,4 +94,20 @@ func SetupDatabase() {
   maritalstatus5 := MaritalStatus{Name: "แยกกันอยู่"}
   db.Model(&MaritalStatus{}).Create(&maritalstatus5)
 
+  // Urgency -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  urgency1 := Urgency{Name: "สีแดง"}
+  db.Model(&Urgency{}).Create(&urgency1)
+
+  urgency2 := Urgency{Name: "สีส้ม"}
+  db.Model(&Urgency{}).Create(&urgency2)
+
+  urgency3 := Urgency{Name: "สีเหลือง"}
+  db.Model(&Urgency{}).Create(&urgency3)
+
+  urgency4 := Urgency{Name: "สีเขียว"}
+  db.Model(&Urgency{}).Create(&urgency4)
+
+  urgency5 := Urgency{Name: "สีขาว"}
+  db.Model(&Urgency{}).Create(&urgency5)
+
 }
