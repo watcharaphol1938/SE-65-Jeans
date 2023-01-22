@@ -78,4 +78,20 @@ func SetupDatabase() {
   bloodtype1 := BloodType{Name: "เอบี"}
   db.Model(&BloodType{}).Create(&bloodtype1)
 
+  // MaritalStatus -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  maritalstatus1 := MaritalStatus{Name: "โสด"}
+  db.Model(&MaritalStatus{}).Create(&maritalstatus1)
+
+  maritalstatus2 := MaritalStatus{Name: "สมรส"}
+  db.Model(&MaritalStatus{}).Create(&maritalstatus2)
+
+  maritalstatus3 := MaritalStatus{Name: "หม้าย"}
+  db.Model(&MaritalStatus{}).Create(&maritalstatus3)
+
+  maritalstatus4 := MaritalStatus{Name: "หย่า"}
+  db.Model(&MaritalStatus{}).Create(&maritalstatus4)
+
+  maritalstatus5 := MaritalStatus{Name: "แยกกันอยู่"}
+  db.Model(&MaritalStatus{}).Create(&maritalstatus5)
+
 }
