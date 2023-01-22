@@ -32,4 +32,21 @@ func SetupDatabase() {
 
 	gender3 := Gender{Name: "อื่นๆ"}
 	db.Model(&Gender{}).Create(&gender3)
+
+  // Prefix -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  prefix1 := Prefix{Name: "เด็กชาย"}
+  db.Model(&Prefix{}).Create(&prefix1)
+
+  prefix2 := Prefix{Name: "เด็กหญิง"}
+  db.Model(&Prefix{}).Create(&prefix2)
+
+  prefix3 := Prefix{Name: "นางสาว"}
+  db.Model(&Prefix{}).Create(&prefix3)
+
+  prefix4 := Prefix{Name: "นาย"}
+  db.Model(&Prefix{}).Create(&prefix4)
+
+  prefix5 := Prefix{Name: "นาง"}
+  db.Model(&Prefix{}).Create(&prefix5)
+
 }
