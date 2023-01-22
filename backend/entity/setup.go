@@ -49,4 +49,20 @@ func SetupDatabase() {
   prefix5 := Prefix{Name: "นาง"}
   db.Model(&Prefix{}).Create(&prefix5)
 
+  // Religion -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  religion1 := Religion{Name: "พุทธ"}
+  db.Model(&Religion{}).Create(&religion1)
+
+  religion2 := Religion{Name: "คริสต์"}
+  db.Model(&Religion{}).Create(&religion2)
+
+  religion3 := Religion{Name: "อิสลาม"}
+  db.Model(&Religion{}).Create(&religion3)
+
+  religion4 := Religion{Name: "ฮินดู"}
+  db.Model(&Religion{}).Create(&religion4)
+
+  religion5 := Religion{Name: "ซิกข์"}
+  db.Model(&Religion{}).Create(&religion5)
+
 }
