@@ -65,4 +65,17 @@ func SetupDatabase() {
   religion5 := Religion{Name: "ซิกข์"}
   db.Model(&Religion{}).Create(&religion5)
 
+  // BloodType -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  bloodtype1 := BloodType{Name: "เอ"}
+  db.Model(&BloodType{}).Create(&bloodtype1)
+
+  bloodtype1 := BloodType{Name: "บี"}
+  db.Model(&BloodType{}).Create(&bloodtype1)
+
+  bloodtype1 := BloodType{Name: "โอ"}
+  db.Model(&BloodType{}).Create(&bloodtype1)
+
+  bloodtype1 := BloodType{Name: "เอบี"}
+  db.Model(&BloodType{}).Create(&bloodtype1)
+
 }
