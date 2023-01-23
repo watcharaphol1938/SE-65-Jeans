@@ -3,6 +3,8 @@ package entity
 import (
   "gorm.io/gorm"
   "gorm.io/driver/sqlite"
+  "fmt"
+  "time"
 )
 
 var db *gorm.DB
@@ -38,14 +40,13 @@ func SetupDatabase() {
   db = database
 
   // Employee -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  dob, err := time.Parse("2006-01-02", "2535-05-30")
   employee1 := Employee{
-    FirstName: "สารัช",
-    LastName: "อยู่เย็น",
+    FirstName: "Sarach",
+    LastName: "Yooyen",
     IdentificationNumber: "4839139280167",
     BirthDay: dob,
     Mobile: "0865896723",
-    Address: "237 หมู่ 5 บ้านสามัคคีชัย ตำบลพระบาทนาสิงห์ อำเภอรัตนวาปี จังหวัดหนองคาย",
+    Address: "237 moo. 5 Samakkhee Chai Village, Phra Bath Na Sing Sub-District, Rattanawapi District, Nong Khai Province",
     Salary: 22000,
   }
 	db.Model(&Employee{}).Create(&employee1)
@@ -96,14 +97,14 @@ func SetupDatabase() {
   bloodtype1 := BloodType{Name: "เอ"}
   db.Model(&BloodType{}).Create(&bloodtype1)
 
-  bloodtype1 := BloodType{Name: "บี"}
-  db.Model(&BloodType{}).Create(&bloodtype1)
+  bloodtype2 := BloodType{Name: "บี"}
+  db.Model(&BloodType{}).Create(&bloodtype2)
 
-  bloodtype1 := BloodType{Name: "โอ"}
-  db.Model(&BloodType{}).Create(&bloodtype1)
+  bloodtype3 := BloodType{Name: "โอ"}
+  db.Model(&BloodType{}).Create(&bloodtype3)
 
-  bloodtype1 := BloodType{Name: "เอบี"}
-  db.Model(&BloodType{}).Create(&bloodtype1)
+  bloodtype4 := BloodType{Name: "เอบี"}
+  db.Model(&BloodType{}).Create(&bloodtype4)
 
   // MaritalStatus -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   maritalstatus1 := MaritalStatus{Name: "โสด"}
@@ -138,11 +139,12 @@ func SetupDatabase() {
   db.Model(&Urgency{}).Create(&urgency5)
 
   // Nurse -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  dob2, err := time.Parse("2006-01-02", "2536-04-04")
   nurse1 := Nurse{
     FirstName: "จริยาภรณ์",
     LastName: "โคตรสมบัติ",
     IdentificationNumber: "1430589764258",
-    BirthDay: "2536-04-24",
+    BirthDay: dob2,
     Mobile: "0637510564",
     Address: "184 หมู่ 5 บ้านนาชุมช้าง ตำบลรัตนวาปี อำเภอรัตนวาปี จังหวัดหนองคาย",
     Salary: 22000,
