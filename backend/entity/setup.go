@@ -122,12 +122,12 @@ func SetupDatabase() {
 
 	// DrugAllergy -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	drugallergy1 := DrugAllergy{
-		Name: "สีแดง/Red",
+		Name: "แพ้ยา/Drug Allergy",
 	}
 	db.Model(&DrugAllergy{}).Create(&drugallergy1)
 
 	drugallergy2 := DrugAllergy{
-		Name: "สีส้ม/Orange",
+		Name: "ไม่แพ้ยา/Not Allergic",
 	}
 	db.Model(&DrugAllergy{}).Create(&drugallergy2)
 
