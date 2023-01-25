@@ -10,11 +10,11 @@ type PatientRegister struct {
 	gorm.Model
 	FirstName                          string
 	LastName                           string
-	IdentificationNumber               string
+	IdentificationNumber               string `gorm:"uniqueIndex"`
 	Age                                uint8
 	BirthDay                           time.Time
 	Mobile                             string
-	Email                              string
+	Email                              string `gorm:"uniqueIndex"`
 	Occupation                         string
 	Address                            string
 	EmergencyPersonFirstName           string
