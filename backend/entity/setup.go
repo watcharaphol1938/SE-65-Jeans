@@ -33,7 +33,7 @@ func SetupDatabase() {
 		&District{},
 		&Province{},
 		&PostCode{},
-		&Urgency{},
+		&DrugAllergy{},
 		&Nurse{},
 		&HistorySheet{},
 	)
@@ -120,36 +120,16 @@ func SetupDatabase() {
 	maritalstatus5 := MaritalStatus{Name: "แยกกันอยู่/Saparated"}
 	db.Model(&MaritalStatus{}).Create(&maritalstatus5)
 
-	// Urgency -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	urgency1 := Urgency{
-		Name:        "สีแดง/Red",
-		Description: "เจ็บป่วยรุนแรงมาก เสี่ยงต่อการเสียชีวิตหรือระบบการทำงานของร่างกายล้มเหลว",
+	// DrugAllergy -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	drugallergy1 := DrugAllergy{
+		Name: "สีแดง/Red",
 	}
-	db.Model(&Urgency{}).Create(&urgency1)
+	db.Model(&DrugAllergy{}).Create(&drugallergy1)
 
-	urgency2 := Urgency{
-		Name:        "สีส้ม/Orange",
-		Description: "เจ็บป่วยรุนแรง อาการทรุดลงรวดเร็ว เสี่ยงต่อการเสียชีวิต",
+	drugallergy2 := DrugAllergy{
+		Name: "สีส้ม/Orange",
 	}
-	db.Model(&Urgency{}).Create(&urgency2)
-
-	urgency3 := Urgency{
-		Name:        "สีเหลือง/Yellow",
-		Description: "เจ็บป่วยปานกลาง อาจถึงพิการหรือเสียชีวิต",
-	}
-	db.Model(&Urgency{}).Create(&urgency3)
-
-	urgency4 := Urgency{
-		Name:        "สีเขียว/Green",
-		Description: "เจ็บป่วยเล็กน้อย อาการยังเปลี่ยนแปลง",
-	}
-	db.Model(&Urgency{}).Create(&urgency4)
-
-	urgency5 := Urgency{
-		Name:        "สีขาว/White",
-		Description: "เจ็บป่วยเล็กน้อย อาการคงที่แล้ว",
-	}
-	db.Model(&Urgency{}).Create(&urgency5)
+	db.Model(&DrugAllergy{}).Create(&drugallergy2)
 
 	// Nurse -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	dob2, err := time.Parse("2006-01-02", "2536-04-24")
