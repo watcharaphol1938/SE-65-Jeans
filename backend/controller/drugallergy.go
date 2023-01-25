@@ -1,9 +1,10 @@
 package controller
 
 import (
-	"github.com/watcharaphol1938/SE-65-Jeans/entity"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/watcharaphol1938/SE-65-Jeans/entity"
 )
 
 /*	POST /users
@@ -21,18 +22,18 @@ import (
 	}
 */
 
-// POST /urgencies
-func CreateUrgency(c *gin.Context) {
-	var urgency entity.Urgency
-	if err := c.ShouldBindJSON(&urgency); err != nil {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		   return
+// POST /drugallergies
+func CreateDrugAllergy(c *gin.Context) {
+	var drugallergy entity.DrugAllergy
+	if err := c.ShouldBindJSON(&drugallergy); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	if err := entity.DB().Create(&urgency).Error; err != nil {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		   return
+	if err := entity.DB().Create(&drugallergy).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": urgency})
+	c.JSON(http.StatusOK, gin.H{"data": drugallergy})
 }
 
 // *******************************************************************************************************
@@ -48,19 +49,18 @@ func CreateUrgency(c *gin.Context) {
 // 	c.JSON(http.StatusOK, gin.H{"data": user})
 // }
 
-// GET /urgency/:id
-func GetUrgency(c *gin.Context) {
-	var urgency entity.Urgency
+// GET /drugallergy/:id
+func GetDrugAllergy(c *gin.Context) {
+	var drugallergy entity.DrugAllergy
 	id := c.Param("id")
-	if err := entity.DB().Raw("SELECT * FROM urgencies WHERE id = ?", id).Scan(&urgency).Error; err != nil {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		   return
+	if err := entity.DB().Raw("SELECT * FROM drugallergies WHERE id = ?", id).Scan(&drugallergy).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": urgency})
+	c.JSON(http.StatusOK, gin.H{"data": drugallergy})
 }
 
 // *******************************************************************************************************
-
 
 // GET /users
 // func ListUsers(c *gin.Context) {
@@ -72,18 +72,17 @@ func GetUrgency(c *gin.Context) {
 // 	c.JSON(http.StatusOK, gin.H{"data": users})
 // }
 
-// GET /urgencies
-func ListUrgencies(c *gin.Context) {
-	var urgencies []entity.Urgency
-	if err := entity.DB().Raw("SELECT * FROM urgencies").Scan(&urgencies).Error; err != nil {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		   return
+// GET /drugallergies
+func ListDrugAllergies(c *gin.Context) {
+	var drugallergies []entity.DrugAllergy
+	if err := entity.DB().Raw("SELECT * FROM drugallergies").Scan(&drugallergies).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": urgencies})
+	c.JSON(http.StatusOK, gin.H{"data": drugallergies})
 }
 
 // *******************************************************************************************************
-
 
 // DELETE /users/:id
 // func DeleteUser(c *gin.Context) {
@@ -95,12 +94,12 @@ func ListUrgencies(c *gin.Context) {
 // 	c.JSON(http.StatusOK, gin.H{"data": id})
 // }
 
-// DELETE /urgencies/:id
-func DeleteUrgency(c *gin.Context) {
+// DELETE /drugallergies/:id
+func DeleteDrugAllergy(c *gin.Context) {
 	id := c.Param("id")
-	if tx := entity.DB().Exec("DELETE FROM urgencies WHERE id = ?", id); tx.RowsAffected == 0 {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": "urgency not found"})
-		   return
+	if tx := entity.DB().Exec("DELETE FROM drugallergies WHERE id = ?", id); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "drugallergy not found"})
+		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": id})
 }
@@ -125,20 +124,20 @@ func DeleteUrgency(c *gin.Context) {
 // 	c.JSON(http.StatusOK, gin.H{"data": user})
 // }
 
-// PATCH /urgencies
-func UpdateUrgency(c *gin.Context) {
-	var urgency entity.Urgency
-	if err := c.ShouldBindJSON(&urgency); err != nil {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		   return
+// PATCH /drugallergies
+func UpdateDrugAllergy(c *gin.Context) {
+	var drugallergy entity.DrugAllergy
+	if err := c.ShouldBindJSON(&drugallergy); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	if tx := entity.DB().Where("id = ?", urgency.ID).First(&urgency); tx.RowsAffected == 0 {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": "urgency not found"})
-		   return
+	if tx := entity.DB().Where("id = ?", drugallergy.ID).First(&drugallergy); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "drugallergy not found"})
+		return
 	}
-	if err := entity.DB().Save(&urgency).Error; err != nil {
-		   c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		   return
+	if err := entity.DB().Save(&drugallergy).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": urgency})
+	c.JSON(http.StatusOK, gin.H{"data": drugallergy})
 }

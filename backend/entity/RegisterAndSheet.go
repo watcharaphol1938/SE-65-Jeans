@@ -17,7 +17,7 @@ type HistorySheet struct {
 	HeartRate              uint8
 	RespiratoryRate        uint8
 	OxygenSaturation       uint8
-	DrugAllergy            string
+	DrugAllergySymtom      string
 	Symtom                 string
 
 	PatientRegisterID *uint
@@ -26,8 +26,8 @@ type HistorySheet struct {
 	NurseID *uint
 	Nurse   Nurse `gorm:"references:ID"`
 
-	UrgencyID *uint
-	Urgency   Urgency `gorm:"references:ID"`
+	DrugAllergyID *uint
+	DrugAllergy   DrugAllergy `gorm:"references:ID"`
 }
 
 type Nurse struct {
@@ -42,11 +42,10 @@ type Nurse struct {
 	HistorySheets        []HistorySheet `gorm:"foreignKey:NurseID"`
 }
 
-type Urgency struct {
+type DrugAllergy struct {
 	gorm.Model
 	Name          string
-	Description   string
-	HistorySheets []HistorySheet `gorm:"foreignKey:UrgencyID"`
+	HistorySheets []HistorySheet `gorm:"foreignKey:DrugAllergyID"`
 }
 
 type PatientRegister struct {
