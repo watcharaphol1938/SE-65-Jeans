@@ -107,24 +107,37 @@ type MaritalStatus struct {
 
 type SubDistrict struct {
 	gorm.Model
-	Name             string
+	Name string
+
+	DistrictID uint
+	District   District
+
+	PostCode uint
+
 	PatientRegisters []PatientRegister `gorm:"foreignKey:SubDistrictID"`
 }
 
 type District struct {
 	gorm.Model
-	Name             string
+	Name string
+
+	ProvinceID uint
+	Province   Province
+
 	PatientRegisters []PatientRegister `gorm:"foreignKey:DistrictID"`
+	SubDistricts     []SubDistrict     `gorm:"foreignKey:SubDistrictID"`
 }
 
 type Province struct {
 	gorm.Model
 	Name             string
 	PatientRegisters []PatientRegister `gorm:"foreignKey:ProvinceID"`
+	Districts        []District        `gorm:"foreignKey:DistrictID"`
 }
 
 type PostCode struct {
 	gorm.Model
-	Name             string
+	Name string
+
 	PatientRegisters []PatientRegister `gorm:"foreignKey:PostCodeID"`
 }
