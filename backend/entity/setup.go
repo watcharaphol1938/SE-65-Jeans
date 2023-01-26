@@ -1,6 +1,10 @@
 package entity
 
 import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
 	"time"
 
 	"gorm.io/driver/sqlite"
@@ -144,4 +148,119 @@ func SetupDatabase() {
 	}
 	db.Model(&Nurse{}).Create(&nurse1)
 
+}
+
+func GetProvinceList(db *gorm.DB) {
+	resp, err := http.Get("https://github.com/kongvut/thai-province-data/blob/master/api_province.json")
+	if err != nil {
+		panic(err)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	// println(string(body))
+	var provinceResp []struct {
+		ID     uint   `json:"id"`
+		NameTH string `json:"name_th"`
+		NameEN string `json:"name_en"`
+	}
+	json.Unmarshal(body, &provinceResp)
+
+	var newProvince []Province
+	for _, province := range provinceResp {
+		newProvince = append(newProvince, Province{
+			Model: gorm.Model{ID: province.ID},
+			Name:  fmt.Sprintf("%s/%s", province.NameTH, province.NameEN),
+		})
+	}
+	db.Model(&Province{}).Create(&newProvince)
+}
+
+func GetDistrictList(db *gorm.DB) {
+	resp, err := http.Get("https://github.com/kongvut/thai-province-data/blob/master/api_amphure.json")
+	if err != nil {
+		panic(err)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	// println(string(body))
+	var districtResp []struct {
+		ID     uint   `json:"id"`
+		NameTH string `json:"name_th"`
+		NameEN string `json:"name_en"`
+	}
+	json.Unmarshal(body, &districtResp)
+
+	var newDistrict []District
+	for _, district := range districtResp {
+		newDistrict = append(newDistrict, District{
+			Model: gorm.Model{ID: district.ID},
+			Name:  fmt.Sprintf("%s/%s", district.NameTH, district.NameEN),
+		})
+	}
+	db.Model(&District{}).Create(&newDistrict)
+}
+
+func GetSubDistrictList(db *gorm.DB) {
+	resp, err := http.Get("https://github.com/kongvut/thai-province-data/blob/master/api_tambon.json")
+	if err != nil {
+		panic(err)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	// println(string(body))
+	var subdistrictResp []struct {
+		ID     uint   `json:"id"`
+		NameTH string `json:"name_th"`
+		NameEN string `json:"name_en"`
+	}
+	json.Unmarshal(body, &subdistrictResp)
+
+	var newSubDistrict []SubDistrict
+	for _, subdistrict := range subdistrictResp {
+		newSubDistrict = append(newSubDistrict, SubDistrict{
+			Model: gorm.Model{ID: subdistrict.ID},
+			Name:  fmt.Sprintf("%s/%s", subdistrict.NameTH, subdistrict.NameEN),
+		})
+	}
+	db.Model(&SubDistrict{}).Create(&newSubDistrict)
+}
+
+func GetNationalityList(db *gorm.DB) {
+	resp, err := http.Get("https://github.com/Dinuks/country-nationality-list/blob/master/countries.json")
+	if err != nil {
+		panic(err)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	// println(string(body))
+	var nationalityResp []struct {
+		ID     uint   `json:"id"`
+		NameEN string `json:"en_short_name"`
+	}
+	json.Unmarshal(body, &nationalityResp)
+
+	var newNationality []Nationality
+	for _, nationality := range nationalityResp {
+		newNationality = append(newNationality, Nationality{
+			Model: gorm.Model{ID: nationality.ID},
+			Name:  fmt.Sprintf("%s", nationality.NameEN),
+		})
+	}
+	db.Model(&Nationality{}).Create(&newNationality)
 }
