@@ -256,7 +256,7 @@ func GetSubDistrictList(db *gorm.DB) {
 }
 
 func GetNationalityList(db *gorm.DB) {
-	resp, err := http.Get("https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json")
+	resp, err := http.Get("https://raw.githubusercontent.com/ponlawat-w/country-list-th/master/country-list-th.json")
 	if err != nil {
 		panic(err)
 	}
@@ -269,7 +269,8 @@ func GetNationalityList(db *gorm.DB) {
 	// println(string(body))
 	var nationalityResp []struct {
 		ID     uint   `json:"id"`
-		NameEN string `json:"en_short_name"`
+		NameTH string `json:"name"`
+		NameEN string `json:"enName"`
 	}
 	json.Unmarshal(body, &nationalityResp)
 
@@ -277,7 +278,7 @@ func GetNationalityList(db *gorm.DB) {
 	for _, nationality := range nationalityResp {
 		newNationality = append(newNationality, Nationality{
 			Model: gorm.Model{ID: nationality.ID},
-			Name:  fmt.Sprintf("%s", nationality.NameEN),
+			Name:  fmt.Sprintf("%s/%s", nationality.NameTH, nationality.NameEN),
 		})
 	}
 	db.Model(&Nationality{}).Create(&newNationality)
