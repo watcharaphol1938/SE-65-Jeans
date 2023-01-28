@@ -46,12 +46,12 @@ func SetupDatabase() {
 	// Employee -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	dob, err := time.Parse("2006-01-02", "2535-05-30")
 	employee1 := Employee{
-		FirstName:            "Sarach",
-		LastName:             "Yooyen",
+		Name:                 "Sarach Yooyen",
 		IdentificationNumber: "4839139280167",
 		BirthDay:             dob,
 		Mobile:               "0865896723",
-		Address:              "237 moo. 5, Samakkhee Chai Village, Phra Bath Na Sing Sub-District, Rattanawapi District, Nong Khai Province",
+		Email:                "SarachTH6@gmail.com",
+		Password:             "SYBGPathum06",
 		Salary:               22000,
 	}
 	db.Model(&Employee{}).Create(&employee1)
@@ -138,12 +138,12 @@ func SetupDatabase() {
 	// Nurse -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	dob2, err := time.Parse("2006-01-02", "2536-04-24")
 	nurse1 := Nurse{
-		FirstName:            "Jariyaporn",
-		LastName:             "Khotsombat",
+		Name:                 "Jariyaporn Khotsombat",
 		IdentificationNumber: "1430589764258",
 		BirthDay:             dob2,
 		Mobile:               "0637510564",
-		Address:              "184 moo. 5, Nachumchang Village, Rattanawapi Sub-District, Rattanawapi District, Nong Khai Province",
+		Email:                "Jariyaporn24@gmail.com",
+		Password:             "JKNurse24",
 		Salary:               22000,
 	}
 	db.Model(&Nurse{}).Create(&nurse1)
