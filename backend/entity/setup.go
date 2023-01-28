@@ -99,16 +99,16 @@ func SetupDatabase() {
 	db.Model(&Religion{}).Create(&religion5)
 
 	// BloodType -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	bloodtype1 := BloodType{Name: "A"}
+	bloodtype1 := BloodType{Name: "เอ/A"}
 	db.Model(&BloodType{}).Create(&bloodtype1)
 
-	bloodtype2 := BloodType{Name: "B"}
+	bloodtype2 := BloodType{Name: "บี/B"}
 	db.Model(&BloodType{}).Create(&bloodtype2)
 
-	bloodtype3 := BloodType{Name: "O"}
+	bloodtype3 := BloodType{Name: "โอ/O"}
 	db.Model(&BloodType{}).Create(&bloodtype3)
 
-	bloodtype4 := BloodType{Name: "AB"}
+	bloodtype4 := BloodType{Name: "เอบี/AB"}
 	db.Model(&BloodType{}).Create(&bloodtype4)
 
 	// MaritalStatus -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
