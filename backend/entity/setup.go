@@ -36,7 +36,7 @@ func SetupDatabase() {
 		&SubDistrict{},
 		&District{},
 		&Province{},
-		&PostCode{},
+		//&PostCode{},
 		&DrugAllergy{},
 		&Nurse{},
 		&HistorySheet{},
@@ -148,10 +148,15 @@ func SetupDatabase() {
 	}
 	db.Model(&Nurse{}).Create(&nurse1)
 
+	GetSubDistrictList(db)
+	GetDistrictList(db)
+	GetProvinceList(db)
+	GetNationalityList(db)
+
 }
 
 func GetProvinceList(db *gorm.DB) {
-	resp, err := http.Get("https://github.com/kongvut/thai-province-data/blob/master/api_province.json")
+	resp, err := http.Get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json")
 	if err != nil {
 		panic(err)
 	}
@@ -180,7 +185,7 @@ func GetProvinceList(db *gorm.DB) {
 }
 
 func GetDistrictList(db *gorm.DB) {
-	resp, err := http.Get("https://github.com/kongvut/thai-province-data/blob/master/api_amphure.json")
+	resp, err := http.Get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json")
 	if err != nil {
 		panic(err)
 	}
@@ -192,24 +197,26 @@ func GetDistrictList(db *gorm.DB) {
 
 	// println(string(body))
 	var districtResp []struct {
-		ID     uint   `json:"id"`
-		NameTH string `json:"name_th"`
-		NameEN string `json:"name_en"`
+		ID         uint   `json:"id"`
+		NameTH     string `json:"name_th"`
+		NameEN     string `json:"name_en"`
+		ProvinceID uint   `json:"province_id"`
 	}
 	json.Unmarshal(body, &districtResp)
 
 	var newDistrict []District
 	for _, district := range districtResp {
 		newDistrict = append(newDistrict, District{
-			Model: gorm.Model{ID: district.ID},
-			Name:  fmt.Sprintf("%s/%s", district.NameTH, district.NameEN),
+			Model:      gorm.Model{ID: district.ID},
+			Name:       fmt.Sprintf("%s/%s", district.NameTH, district.NameEN),
+			ProvinceID: district.ProvinceID,
 		})
 	}
 	db.Model(&District{}).Create(&newDistrict)
 }
 
 func GetSubDistrictList(db *gorm.DB) {
-	resp, err := http.Get("https://github.com/kongvut/thai-province-data/blob/master/api_tambon.json")
+	resp, err := http.Get("https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json")
 	if err != nil {
 		panic(err)
 	}
@@ -220,25 +227,30 @@ func GetSubDistrictList(db *gorm.DB) {
 	defer resp.Body.Close()
 
 	// println(string(body))
-	var subdistrictResp []struct {
-		ID     uint   `json:"id"`
-		NameTH string `json:"name_th"`
-		NameEN string `json:"name_en"`
+	var subDistrictResp []struct {
+		ID         uint   `json:"id"`
+		NameTH     string `json:"name_th"`
+		NameEN     string `json:"name_en"`
+		DistrictID uint   `json:"amphure_id"`
+		PostCode   uint   `json:"zip_code"`
 	}
-	json.Unmarshal(body, &subdistrictResp)
+	json.Unmarshal(body, &subDistrictResp)
 
-	var newSubDistrict []SubDistrict
-	for _, subdistrict := range subdistrictResp {
-		newSubDistrict = append(newSubDistrict, SubDistrict{
-			Model: gorm.Model{ID: subdistrict.ID},
-			Name:  fmt.Sprintf("%s/%s", subdistrict.NameTH, subdistrict.NameEN),
-		})
+	// var newSubDistrict []SubDistrict
+	for _, subDistrict := range subDistrictResp {
+		newSubDistrict := SubDistrict{
+			Model:      gorm.Model{ID: subDistrict.ID},
+			Name:       fmt.Sprintf("%s/%s", subDistrict.NameTH, subDistrict.NameEN),
+			DistrictID: subDistrict.DistrictID,
+			PostCode:   subDistrict.PostCode,
+		}
+		db.Model(&SubDistrict{}).Create(&newSubDistrict)
 	}
-	db.Model(&SubDistrict{}).Create(&newSubDistrict)
+
 }
 
 func GetNationalityList(db *gorm.DB) {
-	resp, err := http.Get("https://github.com/Dinuks/country-nationality-list/blob/master/countries.json")
+	resp, err := http.Get("https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json")
 	if err != nil {
 		panic(err)
 	}
