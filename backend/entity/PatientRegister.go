@@ -56,12 +56,12 @@ type PatientRegister struct {
 
 type Employee struct {
 	gorm.Model
-	FirstName            string
-	LastName             string
+	Name                 string
 	IdentificationNumber string
 	BirthDay             time.Time
 	Mobile               string
-	Address              string
+	Email                string
+	Password             string
 	Salary               uint16
 	PatientRegisters     []PatientRegister `gorm:"foreignKey:EmployeeID"`
 }
