@@ -52,9 +52,6 @@ type PatientRegister struct {
 
 	ProvinceID *uint
 	Province   Province `gorm:"references:ID"`
-
-	PostCodeID *uint
-	PostCode   PostCode `gorm:"references:ID"`
 }
 
 type Employee struct {
@@ -110,7 +107,7 @@ type SubDistrict struct {
 	Name string
 
 	DistrictID uint
-	District   District
+	District   District // `gorm:"references:ID"`
 
 	PostCode uint
 
@@ -122,22 +119,15 @@ type District struct {
 	Name string
 
 	ProvinceID uint
-	Province   Province
+	Province   Province `gorm:"references:ID"`
 
 	PatientRegisters []PatientRegister `gorm:"foreignKey:DistrictID"`
-	SubDistricts     []SubDistrict     `gorm:"foreignKey:SubDistrictID"`
+	SubDistricts     []SubDistrict     `gorm:"foreignKey:DistrictID"`
 }
 
 type Province struct {
 	gorm.Model
 	Name             string
 	PatientRegisters []PatientRegister `gorm:"foreignKey:ProvinceID"`
-	Districts        []District        `gorm:"foreignKey:DistrictID"`
-}
-
-type PostCode struct {
-	gorm.Model
-	Name string
-
-	PatientRegisters []PatientRegister `gorm:"foreignKey:PostCodeID"`
+	Districts        []District        `gorm:"foreignKey:ProvinceID"`
 }
